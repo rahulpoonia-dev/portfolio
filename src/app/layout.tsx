@@ -23,16 +23,27 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
+      url: "https://rahulpooniadev.vercel.app",
     title: "Rahul | Full Stack Developer",
     description:
       "Full Stack Developer specializing in React, Next.js, and Node.js. Building scalable web experiences.",
     siteName: "Rahul Portfolio",
+      images: [
+    {
+      url: "https://github.com/rahulpoonia-dev.png",
+      width: 400,
+      height: 400,
+      alt: "Rahul - Full Stack Developer",
+    },
+      ],
+
   },
   twitter: {
     card: "summary_large_image",
     title: "Rahul | Full Stack Developer",
     description:
       "Full Stack Developer specializing in React, Next.js, and Node.js.",
+        images: ["https://github.com/rahulpoonia-dev.png"],
   },
   robots: {
     index: true,
