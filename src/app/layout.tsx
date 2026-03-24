@@ -20,6 +20,9 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: "Rahul" }],
   creator: "Rahul",
+   icons: {          
+    icon: "/globe.svg",
+  },
   openGraph: {
     type: "website",
     locale: "en_US",

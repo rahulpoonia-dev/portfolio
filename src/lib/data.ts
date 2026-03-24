@@ -8,7 +8,7 @@ export const siteConfig = {
   email: "rahulpoonia-dev@gmail.com",
   github: "https://github.com/rahulpoonia-dev",
   linkedin: "https://linkedin.com/in/rahulpoonia-dev",
-  resumeUrl: "/Rahul-Choudhary.pdf",
+  resumeUrl: "/Rahul-Choudhary-CV.pdf",
 };
 
 export const skills: Skill[] = [
