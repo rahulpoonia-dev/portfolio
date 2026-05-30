@@ -9,133 +9,345 @@ export default function Projects() {
   const rest = projects.filter((p) => !p.featured);
 
   return (
-    <section id="projects" className="py-24 px-6 bg-white dark:bg-zinc-950">
-      <div className="max-w-6xl mx-auto">
+    <section
+      id="projects"
+      style={{
+        padding: "7rem 2rem",
+        borderTop: "1px solid var(--border-light)",
+        background: "var(--bg-secondary)",
+      }}
+    >
+      <div
+        style={{ maxWidth: "1100px", margin: "0 auto" }}
+        ref={ref}
+        className={`transition-all duration-700 ${
+          isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+        }`}
+      >
+        {/* Header */}
         <div
-          ref={ref}
-          className={`transition-all duration-700 ${
-            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-          }`}
+          style={{
+            display: "flex",
+            alignItems: "baseline",
+            justifyContent: "space-between",
+            gap: "1.5rem",
+            marginBottom: "4rem",
+            flexWrap: "wrap",
+          }}
         >
-          <p className="text-xs font-semibold uppercase tracking-widest text-blue-600 dark:text-blue-400 mb-3">
-            Projects
-          </p>
-          <h2 className="text-3xl sm:text-4xl font-bold text-zinc-900 dark:text-zinc-100 mb-12">
-            Things I&apos;ve built
-          </h2>
+          <div
+            style={{ display: "flex", alignItems: "baseline", gap: "1.5rem" }}
+          >
+            <span className="section-counter">04 /</span>
+            <h2
+              style={{
+                fontFamily: "var(--font-display)",
+                fontSize: "clamp(1.8rem, 4vw, 2.8rem)",
+                fontWeight: 400,
+                color: "var(--text-primary)",
+                letterSpacing: "-0.02em",
+              }}
+            >
+              Selected Work
+            </h2>
+          </div>
+          <span
+            style={{
+              fontFamily: "var(--font-mono)",
+              fontSize: "0.6rem",
+              letterSpacing: "0.1em",
+              textTransform: "uppercase",
+              color: "var(--text-muted)",
+            }}
+          >
+            2024 – present
+          </span>
+        </div>
 
-          {/* Featured Project */}
-          {featured && (
-            <div className="mb-6 p-7 rounded-2xl bg-zinc-50 dark:bg-zinc-800/60 border border-zinc-200 dark:border-zinc-700/60 hover:border-blue-400 dark:hover:border-blue-500 transition-all duration-300 group">
-              <div className="flex flex-wrap items-start justify-between gap-4 mb-4">
-                <div>
-                  <span className="text-xs font-medium text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-950/40 px-2 py-0.5 rounded-full">
-                    Featured
-                  </span>
-                  <h3 className="text-xl font-semibold text-zinc-900 dark:text-zinc-100 mt-2">
-                    {featured.title}
-                  </h3>
-                </div>
-                <div className="flex gap-3">
+        {/* Featured Project — large card */}
+        {featured && (
+          <div
+            style={{
+              marginBottom: "2px",
+              padding: "2.5rem",
+              border: "1px solid var(--border)",
+              background: "var(--bg-card)",
+              borderRadius: "2px",
+              position: "relative",
+              transition: "border-color 0.2s ease",
+            }}
+            className="group hover:border-[var(--accent)]"
+          >
+            {/* Featured label */}
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "flex-start",
+                marginBottom: "1.5rem",
+                flexWrap: "wrap",
+                gap: "1rem",
+              }}
+            >
+              <span
+                style={{
+                  fontFamily: "var(--font-mono)",
+                  fontSize: "0.6rem",
+                  letterSpacing: "0.15em",
+                  textTransform: "uppercase",
+                  color: "var(--accent)",
+                }}
+              >
+                ★ Featured
+              </span>
+
+              {/* Links */}
+              <div style={{ display: "flex", gap: "1rem" }}>
+                <a
+                  href={featured.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{
+                    fontFamily: "var(--font-mono)",
+                    fontSize: "0.65rem",
+                    letterSpacing: "0.1em",
+                    textTransform: "uppercase",
+                    color: "var(--text-muted)",
+                    textDecoration: "none",
+                    transition: "color 0.2s ease",
+                  }}
+                  onMouseEnter={(e) =>
+                    ((e.currentTarget as HTMLElement).style.color =
+                      "var(--text-primary)")
+                  }
+                  onMouseLeave={(e) =>
+                    ((e.currentTarget as HTMLElement).style.color =
+                      "var(--text-muted)")
+                  }
+                >
+                  GitHub ↗
+                </a>
+                {featured.live && (
                   <a
-                    href={featured.github}
+                    href={featured.live}
                     target="_blank"
                     rel="noopener noreferrer"
-                    aria-label="GitHub"
-                    className="text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors"
+                    style={{
+                      fontFamily: "var(--font-mono)",
+                      fontSize: "0.65rem",
+                      letterSpacing: "0.1em",
+                      textTransform: "uppercase",
+                      color: "var(--text-muted)",
+                      textDecoration: "none",
+                      transition: "color 0.2s ease",
+                    }}
+                    onMouseEnter={(e) =>
+                      ((e.currentTarget as HTMLElement).style.color =
+                        "var(--accent)")
+                    }
+                    onMouseLeave={(e) =>
+                      ((e.currentTarget as HTMLElement).style.color =
+                        "var(--text-muted)")
+                    }
                   >
-                    <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24">
-                      <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12" />
-                    </svg>
+                    Live ↗
                   </a>
-                  {featured.live && (
-                    <a
-                      href={featured.live}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      aria-label="Live demo"
-                      className="text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors"
-                    >
-                      <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
-                        <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3" strokeLinecap="round" strokeLinejoin="round" />
-                      </svg>
-                    </a>
-                  )}
-                </div>
-              </div>
-              <p className="text-zinc-500 dark:text-zinc-400 text-sm mb-5 leading-relaxed max-w-2xl">
-                {featured.description}
-              </p>
-              <div className="flex flex-wrap gap-2">
-                {featured.tech.map((t) => (
-                  <span
-                    key={t}
-                    className="text-xs px-2.5 py-1 rounded-md bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-700 text-zinc-600 dark:text-zinc-400"
-                  >
-                    {t}
-                  </span>
-                ))}
+                )}
               </div>
             </div>
-          )}
 
-          {/* Other Projects */}
-          <div className="grid sm:grid-cols-2 gap-5">
-            {rest.map((project, i) => (
-              <div
-                key={project.id}
-                style={{ transitionDelay: `${i * 100}ms` }}
-                className={`p-6 rounded-xl bg-zinc-50 dark:bg-zinc-800/60 border border-zinc-200 dark:border-zinc-700/60 hover:border-blue-400 dark:hover:border-blue-500 hover:shadow-sm transition-all duration-300 flex flex-col ${
-                  isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
-                }`}
+            <h3
+              style={{
+                fontFamily: "var(--font-display)",
+                fontSize: "clamp(1.4rem, 3vw, 2rem)",
+                fontWeight: 500,
+                color: "var(--text-primary)",
+                letterSpacing: "-0.02em",
+                marginBottom: "1rem",
+              }}
+            >
+              {featured.title}
+            </h3>
+
+            <p
+              style={{
+                fontFamily: "var(--font-body)",
+                fontSize: "0.95rem",
+                fontWeight: 300,
+                color: "var(--text-secondary)",
+                lineHeight: 1.75,
+                maxWidth: "640px",
+                marginBottom: "2rem",
+              }}
+            >
+              {featured.description}
+            </p>
+
+            <div style={{ display: "flex", flexWrap: "wrap", gap: "0.5rem" }}>
+              {featured.tech.map((t) => (
+                <span
+                  key={t}
+                  style={{
+                    fontFamily: "var(--font-mono)",
+                    fontSize: "0.65rem",
+                    letterSpacing: "0.08em",
+                    padding: "0.3rem 0.7rem",
+                    border: "1px solid var(--border)",
+                    color: "var(--text-muted)",
+                    borderRadius: "2px",
+                  }}
+                >
+                  {t}
+                </span>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* Other projects — numbered list */}
+        <div style={{ marginTop: "0" }}>
+          {rest.map((project, i) => (
+            <div
+              key={project.id}
+              style={{
+                display: "grid",
+                gridTemplateColumns: "2.5rem 1fr",
+                gap: "1.5rem",
+                padding: "2rem 0",
+                borderTop: "1px solid var(--border)",
+                borderBottom:
+                  i === rest.length - 1 ? "1px solid var(--border)" : "none",
+                opacity: isVisible ? 1 : 0,
+                transform: isVisible ? "translateY(0)" : "translateY(16px)",
+                transition: `all 0.6s ease ${(i + 1) * 120}ms`,
+              }}
+            >
+              {/* Number */}
+              <span
+                style={{
+                  fontFamily: "var(--font-mono)",
+                  fontSize: "0.65rem",
+                  letterSpacing: "0.1em",
+                  color: "var(--text-muted)",
+                  paddingTop: "0.3rem",
+                }}
               >
-                <div className="flex items-start justify-between mb-3">
-                  <h3 className="text-base font-semibold text-zinc-900 dark:text-zinc-100">
+                0{i + 2}
+              </span>
+
+              <div>
+                {/* Title + links */}
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                    alignItems: "flex-start",
+                    marginBottom: "0.6rem",
+                    flexWrap: "wrap",
+                    gap: "0.75rem",
+                  }}
+                >
+                  <h3
+                    style={{
+                      fontFamily: "var(--font-display)",
+                      fontSize: "1.15rem",
+                      fontWeight: 500,
+                      color: "var(--text-primary)",
+                      letterSpacing: "-0.01em",
+                    }}
+                  >
                     {project.title}
                   </h3>
-                  <div className="flex gap-3 ml-3">
+                  <div style={{ display: "flex", gap: "1rem" }}>
                     <a
                       href={project.github}
                       target="_blank"
                       rel="noopener noreferrer"
-                      aria-label="GitHub"
-                      className="text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors"
+                      style={{
+                        fontFamily: "var(--font-mono)",
+                        fontSize: "0.65rem",
+                        letterSpacing: "0.1em",
+                        textTransform: "uppercase",
+                        color: "var(--text-muted)",
+                        textDecoration: "none",
+                        transition: "color 0.2s ease",
+                      }}
+                      onMouseEnter={(e) =>
+                        ((e.currentTarget as HTMLElement).style.color =
+                          "var(--text-primary)")
+                      }
+                      onMouseLeave={(e) =>
+                        ((e.currentTarget as HTMLElement).style.color =
+                          "var(--text-muted)")
+                      }
                     >
-                      <svg className="w-4.5 h-4.5 fill-current w-5 h-5" viewBox="0 0 24 24">
-                        <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12" />
-                      </svg>
+                      GitHub ↗
                     </a>
                     {project.live && (
                       <a
                         href={project.live}
                         target="_blank"
                         rel="noopener noreferrer"
-                        aria-label="Live demo"
-                        className="text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors"
+                        style={{
+                          fontFamily: "var(--font-mono)",
+                          fontSize: "0.65rem",
+                          letterSpacing: "0.1em",
+                          textTransform: "uppercase",
+                          color: "var(--text-muted)",
+                          textDecoration: "none",
+                          transition: "color 0.2s ease",
+                        }}
+                        onMouseEnter={(e) =>
+                          ((e.currentTarget as HTMLElement).style.color =
+                            "var(--accent)")
+                        }
+                        onMouseLeave={(e) =>
+                          ((e.currentTarget as HTMLElement).style.color =
+                            "var(--text-muted)")
+                        }
                       >
-                        <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
-                          <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3" strokeLinecap="round" strokeLinejoin="round" />
-                        </svg>
+                        Live ↗
                       </a>
                     )}
                   </div>
                 </div>
-                <p className="text-sm text-zinc-500 dark:text-zinc-400 leading-relaxed mb-5 flex-1">
+
+                <p
+                  style={{
+                    fontFamily: "var(--font-body)",
+                    fontSize: "0.9rem",
+                    fontWeight: 300,
+                    color: "var(--text-secondary)",
+                    lineHeight: 1.7,
+                    marginBottom: "1rem",
+                  }}
+                >
                   {project.description}
                 </p>
-                <div className="flex flex-wrap gap-2 mt-auto">
+
+                <div
+                  style={{ display: "flex", flexWrap: "wrap", gap: "0.4rem" }}
+                >
                   {project.tech.map((t) => (
                     <span
                       key={t}
-                      className="text-xs px-2.5 py-1 rounded-md bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-700 text-zinc-600 dark:text-zinc-400"
+                      style={{
+                        fontFamily: "var(--font-mono)",
+                        fontSize: "0.6rem",
+                        letterSpacing: "0.08em",
+                        padding: "0.2rem 0.6rem",
+                        border: "1px solid var(--border)",
+                        color: "var(--text-muted)",
+                        borderRadius: "2px",
+                      }}
                     >
                       {t}
                     </span>
                   ))}
                 </div>
               </div>
-            ))}
-          </div>
+            </div>
+          ))}
         </div>
       </div>
     </section>

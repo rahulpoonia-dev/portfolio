@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 
-export function useTypewriter(words: string[], speed = 80, pause = 1800) {
+export function useTypewriter(words: string[], speed = 75, pause = 2000) {
   const [displayed, setDisplayed] = useState("");
   const [wordIndex, setWordIndex] = useState(0);
   const [charIndex, setCharIndex] = useState(0);

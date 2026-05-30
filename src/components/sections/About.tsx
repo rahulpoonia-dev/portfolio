@@ -8,64 +8,138 @@ export default function About() {
   return (
     <section
       id="about"
-      className="py-24 px-6 bg-zinc-50 dark:bg-zinc-900"
+      style={{
+        padding: "7rem 2rem",
+        borderTop: "1px solid var(--border-light)",
+      }}
     >
-      <div className="max-w-6xl mx-auto">
+      <div
+        style={{ maxWidth: "1100px", margin: "0 auto" }}
+        ref={ref}
+        className={`transition-all duration-700 ${
+          isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+        }`}
+      >
+        {/* Header row */}
         <div
-          ref={ref}
-          className={`transition-all duration-700 ${
-            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-          }`}
+          style={{
+            display: "flex",
+            alignItems: "baseline",
+            gap: "1.5rem",
+            marginBottom: "4rem",
+          }}
         >
-          {/* Section Label */}
-          <p className="text-xs font-semibold uppercase tracking-widest text-blue-600 dark:text-blue-400 mb-3">
-            About Me
-          </p>
-          <h2 className="text-3xl sm:text-4xl font-bold text-zinc-900 dark:text-zinc-100 mb-12">
-            Who I am
+          <span className="section-counter">01 /</span>
+          <h2
+            style={{
+              fontFamily: "var(--font-display)",
+              fontSize: "clamp(1.8rem, 4vw, 2.8rem)",
+              fontWeight: 400,
+              color: "var(--text-primary)",
+              letterSpacing: "-0.02em",
+            }}
+          >
+            About
           </h2>
+        </div>
 
-          <div className="grid md:grid-cols-2 gap-12 items-start">
-            {/* Bio */}
-            <div>
-              <p className="text-zinc-600 dark:text-zinc-400 leading-relaxed text-base mb-6">
-                {siteConfig.bio}
-              </p>
-              <p className="text-zinc-600 dark:text-zinc-400 leading-relaxed text-base mb-8">
-                When I&apos;m not coding, I enjoy exploring new technologies, contributing to open source, and staying up to date with the latest trends in web development. I believe in writing clean, maintainable code that solves real problems.
-              </p>
-              <a
-                href="#contact"
-                className="inline-flex items-center gap-2 text-sm font-medium text-blue-600 dark:text-blue-400 hover:underline"
+        {/* Two-column layout */}
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "1fr",
+            gap: "4rem",
+          }}
+          className="md:grid-cols-[2fr_1fr]"
+        >
+          {/* Bio — prose heavy, like ozgur.design */}
+          <div>
+            <p
+              style={{
+                fontFamily: "var(--font-body)",
+                fontSize: "1.1rem",
+                fontWeight: 300,
+                lineHeight: 1.85,
+                color: "var(--text-secondary)",
+                marginBottom: "1.5rem",
+                maxWidth: "620px",
+              }}
+            >
+              {siteConfig.bio}
+            </p>
+            <p
+              style={{
+                fontFamily: "var(--font-body)",
+                fontSize: "1.1rem",
+                fontWeight: 300,
+                lineHeight: 1.85,
+                color: "var(--text-secondary)",
+                marginBottom: "2.5rem",
+                maxWidth: "620px",
+              }}
+            >
+              {siteConfig.bio2}
+            </p>
+
+            <a
+              href="#contact"
+              className="link-underline"
+              style={{
+                fontFamily: "var(--font-mono)",
+                fontSize: "0.72rem",
+                letterSpacing: "0.12em",
+                textTransform: "uppercase",
+                color: "var(--accent)",
+                textDecoration: "none",
+              }}
+            >
+              Let&apos;s work together →
+            </a>
+          </div>
+
+          {/* Info sidebar */}
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              gap: "0",
+            }}
+          >
+            {siteConfig.aboutInfo.map((item, i) => (
+              <div
+                key={item.label}
+                style={{
+                  padding: "1.1rem 0",
+                  borderTop: i === 0 ? "1px solid var(--border)" : "none",
+                  borderBottom: "1px solid var(--border)",
+                  display: "flex",
+                  justifyContent: "space-between",
+                  alignItems: "center",
+                }}
               >
-                Let&apos;s work together
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
-                  <path d="M5 12h14M12 5l7 7-7 7" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
-              </a>
-            </div>
-
-            {/* Info Cards */}
-            <div className="grid grid-cols-2 gap-4">
-              {[
-                { label: "Location", value: "Jaipur" },
-                { label: "Availability", value: "Open to work" },
-                { label: "Focus", value: "Full Stack Dev" },
-                { label: "Experience", value: "2+ Years" },
-              ].map((item) => (
-                <div
-                  key={item.label}
-                  className="p-5 rounded-xl bg-white dark:bg-zinc-800/60 border border-zinc-200 dark:border-zinc-700/60"
+                <span
+                  style={{
+                    fontFamily: "var(--font-mono)",
+                    fontSize: "0.62rem",
+                    letterSpacing: "0.12em",
+                    textTransform: "uppercase",
+                    color: "var(--text-muted)",
+                  }}
                 >
-                  <p className="text-xs text-zinc-400 dark:text-zinc-500 mb-1">
-                    {item.label}
-                  </p>
-                  <p className="text-sm font-semibold text-zinc-800 dark:text-zinc-200">
-                    {item.value}
-                  </p>
-                </div>
-              ))}
-            </div>
+                  {item.label}
+                </span>
+                <span
+                  style={{
+                    fontFamily: "var(--font-body)",
+                    fontSize: "0.9rem",
+                    fontWeight: 500,
+                    color: "var(--text-primary)",
+                  }}
+                >
+                  {item.value}
+                </span>
+              </div>
+            ))}
           </div>
         </div>
       </div>

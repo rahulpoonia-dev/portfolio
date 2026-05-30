@@ -1,14 +1,11 @@
 import type { Metadata } from "next";
-import { Geist } from "next/font/google";
-import "./globals.css";
 import { ThemeProvider } from "@/lib/ThemeProvider";
-
-const geist = Geist({ subsets: ["latin"], variable: "--font-geist" });
+import "./globals.css";
 
 export const metadata: Metadata = {
   title: "Rahul | Full Stack Developer",
   description:
-    "Rahul is a Full Stack Developer specializing in React, Next.js, Node.js, and TypeScript. Building scalable, performant web applications.",
+    "Rahul Poonia is a Full Stack Developer specialising in React, Next.js, Node.js, and TypeScript. Building scalable, performant web applications from Jaipur, India.",
   keywords: [
     "Full Stack Developer",
     "React Developer",
@@ -16,42 +13,28 @@ export const metadata: Metadata = {
     "Node.js",
     "TypeScript",
     "Web Developer",
-    "Rahul",
+    "Rahul Poonia",
+    "Jaipur",
   ],
-  authors: [{ name: "Rahul" }],
-  creator: "Rahul",
-   icons: {          
-    icon: "/globe.svg",
-  },
+  authors: [{ name: "Rahul Poonia" }],
   openGraph: {
-    type: "website",
-    locale: "en_US",
-      url: "https://rahulpooniadev.vercel.app",
     title: "Rahul | Full Stack Developer",
     description:
-      "Full Stack Developer specializing in React, Next.js, and Node.js. Building scalable web experiences.",
-    siteName: "Rahul Portfolio",
-      images: [
-    {
-      url: "https://github.com/rahulpoonia-dev.png",
-      width: 400,
-      height: 400,
-      alt: "Rahul - Full Stack Developer",
-    },
-      ],
-
+      "Full Stack Developer specialising in React, Next.js, and Node.js.",
+    url: "https://rahulpooniadev.vercel.app",
+    siteName: "Rahul Poonia Portfolio",
+    locale: "en_US",
+    type: "website",
   },
   twitter: {
     card: "summary_large_image",
     title: "Rahul | Full Stack Developer",
     description:
-      "Full Stack Developer specializing in React, Next.js, and Node.js.",
-        images: ["https://github.com/rahulpoonia-dev.png"],
+      "Full Stack Developer specialising in React, Next.js, and Node.js.",
   },
   robots: {
     index: true,
     follow: true,
-    googleBot: { index: true, follow: true },
   },
 };
 
@@ -62,7 +45,19 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${geist.variable} font-sans antialiased`}>
+      <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link
+          rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossOrigin="anonymous"
+        />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300;1,9..40,400&family=DM+Mono:wght@300;400;500&display=swap"
+          rel="stylesheet"
+        />
+      </head>
+      <body>
         <ThemeProvider>{children}</ThemeProvider>
       </body>
     </html>

@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
 
-export function useScrollAnimation(threshold = 0.15) {
+export function useScrollAnimation(threshold = 0.12) {
   const ref = useRef<HTMLDivElement>(null);
   const [isVisible, setIsVisible] = useState(false);
 
@@ -13,7 +13,7 @@ export function useScrollAnimation(threshold = 0.15) {
           observer.disconnect();
         }
       },
-      { threshold }
+      { threshold },
     );
     if (ref.current) observer.observe(ref.current);
     return () => observer.disconnect();

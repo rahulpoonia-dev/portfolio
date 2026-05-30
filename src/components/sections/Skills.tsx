@@ -20,49 +20,123 @@ export default function Skills() {
     active === "all" ? skills : skills.filter((s) => s.category === active);
 
   return (
-    <section id="skills" className="py-24 px-6 bg-white dark:bg-zinc-950">
-      <div className="max-w-6xl mx-auto">
+    <section
+      id="skills"
+      style={{
+        padding: "7rem 2rem",
+        borderTop: "1px solid var(--border-light)",
+        background: "var(--bg-secondary)",
+      }}
+    >
+      <div
+        style={{ maxWidth: "1100px", margin: "0 auto" }}
+        ref={ref}
+        className={`transition-all duration-700 ${
+          isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+        }`}
+      >
+        {/* Header */}
         <div
-          ref={ref}
-          className={`transition-all duration-700 ${
-            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-          }`}
+          style={{
+            display: "flex",
+            alignItems: "baseline",
+            gap: "1.5rem",
+            marginBottom: "3.5rem",
+          }}
         >
-          <p className="text-xs font-semibold uppercase tracking-widest text-blue-600 dark:text-blue-400 mb-3">
-            Skills
-          </p>
-          <h2 className="text-3xl sm:text-4xl font-bold text-zinc-900 dark:text-zinc-100 mb-10">
-            What I work with
+          <span className="section-counter">02 /</span>
+          <h2
+            style={{
+              fontFamily: "var(--font-display)",
+              fontSize: "clamp(1.8rem, 4vw, 2.8rem)",
+              fontWeight: 400,
+              color: "var(--text-primary)",
+              letterSpacing: "-0.02em",
+            }}
+          >
+            Stack
           </h2>
+        </div>
 
-          {/* Filter Tabs */}
-          <div className="flex flex-wrap gap-2 mb-10">
-            {categories.map((cat) => (
-              <button
-                key={cat.value}
-                onClick={() => setActive(cat.value)}
-                className={`text-sm px-4 py-1.5 rounded-full border transition-all duration-200 ${
+        {/* Filter — mono pill tabs */}
+        <div
+          style={{
+            display: "flex",
+            gap: "0",
+            marginBottom: "3rem",
+            borderBottom: "1px solid var(--border)",
+          }}
+        >
+          {categories.map((cat) => (
+            <button
+              key={cat.value}
+              onClick={() => setActive(cat.value)}
+              style={{
+                fontFamily: "var(--font-mono)",
+                fontSize: "0.65rem",
+                letterSpacing: "0.12em",
+                textTransform: "uppercase",
+                padding: "0.6rem 1.25rem",
+                border: "none",
+                borderBottom:
                   active === cat.value
-                    ? "bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-900 border-zinc-900 dark:border-zinc-100"
-                    : "text-zinc-600 dark:text-zinc-400 border-zinc-300 dark:border-zinc-700 hover:border-zinc-500 dark:hover:border-zinc-500"
-                }`}
-              >
-                {cat.label}
-              </button>
-            ))}
-          </div>
+                    ? "2px solid var(--accent)"
+                    : "2px solid transparent",
+                background: "transparent",
+                color:
+                  active === cat.value
+                    ? "var(--text-primary)"
+                    : "var(--text-muted)",
+                cursor: "pointer",
+                transition: "all 0.2s ease",
+                marginBottom: "-1px",
+              }}
+            >
+              {cat.label}
+            </button>
+          ))}
+        </div>
 
-          {/* Skills Grid */}
-          <div className="flex flex-wrap gap-3">
-            {filtered.map((skill) => (
-              <div
-                key={skill.name}
-                className="px-4 py-2 rounded-lg bg-zinc-50 dark:bg-zinc-800/60 border border-zinc-200 dark:border-zinc-700/60 text-sm text-zinc-700 dark:text-zinc-300 font-medium hover:border-blue-400 dark:hover:border-blue-500 hover:text-blue-600 dark:hover:text-blue-400 transition-all duration-200"
-              >
-                {skill.name}
-              </div>
-            ))}
-          </div>
+        {/* Skills — inline flowing tags */}
+        <div
+          style={{
+            display: "flex",
+            flexWrap: "wrap",
+            gap: "0.6rem",
+          }}
+        >
+          {filtered.map((skill, i) => (
+            <span
+              key={skill.name}
+              style={{
+                fontFamily: "var(--font-body)",
+                fontSize: "0.85rem",
+                fontWeight: 400,
+                padding: "0.45rem 1rem",
+                border: "1px solid var(--border)",
+                borderRadius: "2px",
+                color: "var(--text-secondary)",
+                background: "var(--bg-card)",
+                transition: "all 0.2s ease",
+                cursor: "default",
+                opacity: isVisible ? 1 : 0,
+                transitionDelay: `${i * 30}ms`,
+              }}
+              onMouseEnter={(e) => {
+                (e.currentTarget as HTMLElement).style.borderColor =
+                  "var(--accent)";
+                (e.currentTarget as HTMLElement).style.color = "var(--accent)";
+              }}
+              onMouseLeave={(e) => {
+                (e.currentTarget as HTMLElement).style.borderColor =
+                  "var(--border)";
+                (e.currentTarget as HTMLElement).style.color =
+                  "var(--text-secondary)";
+              }}
+            >
+              {skill.name}
+            </span>
+          ))}
         </div>
       </div>
     </section>

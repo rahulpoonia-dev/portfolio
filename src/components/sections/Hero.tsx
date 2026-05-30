@@ -15,176 +15,280 @@ export default function Hero() {
   return (
     <section
       id="hero"
-      className="min-h-screen flex flex-col justify-center px-6 pt-16 bg-white dark:bg-zinc-950"
+      style={{
+        minHeight: "100vh",
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+        padding: "0 2rem",
+        paddingTop: "80px",
+        maxWidth: "1100px",
+        margin: "0 auto",
+        width: "100%",
+        position: "relative",
+      }}
     >
-      <div className="max-w-6xl mx-auto w-full">
-        <div className="grid md:grid-cols-2 gap-12 items-center">
+      {/* Year stamp top-right — ozgur.design signature detail */}
+      <div
+        style={{
+          position: "absolute",
+          top: "96px",
+          right: "0",
+          fontFamily: "var(--font-mono)",
+          fontSize: "0.6rem",
+          letterSpacing: "0.2em",
+          color: "var(--text-muted)",
+          textTransform: "uppercase",
+          writingMode: "vertical-rl",
+        }}
+        className="hidden md:block"
+      >
+        MMXXVI / Jaipur
+      </div>
 
-          {/* Left Side */}
-          <div>
-            {/* Badge */}
-            <div className="inline-flex items-center gap-2 text-xs font-medium text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-950/50 border border-blue-100 dark:border-blue-900 px-3 py-1.5 rounded-full mb-6 animate-fade-in">
-              <span className="w-1.5 h-1.5 rounded-full bg-blue-500 animate-pulse" />
-              Available for work
-            </div>
+      <div
+        style={{
+          maxWidth: "780px",
+          opacity: 0,
+          animation: "fadeUp 0.9s ease 0.1s forwards",
+        }}
+      >
+        {/* Available badge */}
+        <div
+          style={{
+            display: "inline-flex",
+            alignItems: "center",
+            gap: "0.5rem",
+            marginBottom: "2.5rem",
+            opacity: 0,
+            animation: "fadeIn 0.6s ease 0.3s forwards",
+          }}
+        >
+          <span
+            style={{
+              width: "6px",
+              height: "6px",
+              borderRadius: "50%",
+              background: "#4ade80",
+              display: "inline-block",
+              animation: "blink 2s ease-in-out infinite",
+            }}
+          />
+          <span
+            style={{
+              fontFamily: "var(--font-mono)",
+              fontSize: "0.65rem",
+              letterSpacing: "0.15em",
+              textTransform: "uppercase",
+              color: "var(--text-muted)",
+            }}
+          >
+            Available for work
+          </span>
+        </div>
 
-            {/* Heading */}
-            <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-zinc-900 dark:text-zinc-50 leading-tight mb-4 tracking-tight">
-              Hi, I&apos;m{" "}
-              <span className="text-blue-600 dark:text-blue-400">
-                {siteConfig.name}
-              </span>
-              <br />
-              <span className="text-zinc-400 dark:text-zinc-500 font-normal text-3xl sm:text-4xl md:text-5xl">
-                {typed}
-                <span className="inline-block w-0.5 h-8 sm:h-10 bg-blue-500 ml-1 align-middle animate-blink" />
-              </span>
-            </h1>
+        {/* Section counter */}
+        <p className="section-counter" style={{ marginBottom: "1.25rem" }}>
+          00 /
+        </p>
 
-            {/* Tagline */}
-            <p className="text-lg text-zinc-500 dark:text-zinc-400 mb-8 max-w-xl leading-relaxed">
-              {siteConfig.tagline}
-            </p>
+        {/* Main heading */}
+        <h1
+          style={{
+            fontFamily: "var(--font-display)",
+            fontSize: "clamp(2.8rem, 7vw, 5.5rem)",
+            fontWeight: 400,
+            lineHeight: 1.1,
+            letterSpacing: "-0.02em",
+            color: "var(--text-primary)",
+            marginBottom: "1.5rem",
+          }}
+        >
+          Rahul Poonia —{" "}
+          <em
+            style={{
+              fontStyle: "italic",
+              color: "var(--accent)",
+            }}
+          >
+            {typed}
+            <span
+              style={{
+                display: "inline-block",
+                width: "2px",
+                height: "0.85em",
+                background: "var(--accent)",
+                marginLeft: "2px",
+                verticalAlign: "middle",
+              }}
+              className="animate-blink"
+            />
+          </em>
+        </h1>
 
-            {/* CTAs */}
-            <div className="flex flex-wrap gap-3">
-              <a
-                href="#projects"
-                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-900 text-sm font-medium hover:bg-zinc-700 dark:hover:bg-zinc-300 transition-colors"
+        {/* Tagline */}
+        <p
+          style={{
+            fontFamily: "var(--font-body)",
+            fontWeight: 300,
+            fontSize: "clamp(1rem, 2vw, 1.2rem)",
+            color: "var(--text-secondary)",
+            maxWidth: "560px",
+            lineHeight: 1.7,
+            marginBottom: "3rem",
+            opacity: 0,
+            animation: "fadeUp 0.7s ease 0.5s forwards",
+          }}
+        >
+          {siteConfig.tagline}
+        </p>
+
+        {/* CTAs */}
+        <div
+          style={{
+            display: "flex",
+            flexWrap: "wrap",
+            gap: "1rem",
+            marginBottom: "4rem",
+            opacity: 0,
+            animation: "fadeUp 0.7s ease 0.65s forwards",
+          }}
+        >
+          <a
+            href="#projects"
+            style={{
+              fontFamily: "var(--font-mono)",
+              fontSize: "0.72rem",
+              letterSpacing: "0.12em",
+              textTransform: "uppercase",
+              padding: "0.75rem 1.75rem",
+              background: "var(--text-primary)",
+              color: "var(--bg-primary)",
+              textDecoration: "none",
+              borderRadius: "2px",
+              transition: "opacity 0.2s ease",
+            }}
+            onMouseEnter={(e) =>
+              ((e.currentTarget as HTMLElement).style.opacity = "0.8")
+            }
+            onMouseLeave={(e) =>
+              ((e.currentTarget as HTMLElement).style.opacity = "1")
+            }
+          >
+            View Work →
+          </a>
+          <a
+            href={siteConfig.resumeUrl}
+            download
+            style={{
+              fontFamily: "var(--font-mono)",
+              fontSize: "0.72rem",
+              letterSpacing: "0.12em",
+              textTransform: "uppercase",
+              padding: "0.75rem 1.75rem",
+              border: "1px solid var(--border)",
+              color: "var(--text-secondary)",
+              textDecoration: "none",
+              borderRadius: "2px",
+              transition: "all 0.2s ease",
+            }}
+            onMouseEnter={(e) => {
+              (e.currentTarget as HTMLElement).style.borderColor =
+                "var(--text-primary)";
+              (e.currentTarget as HTMLElement).style.color =
+                "var(--text-primary)";
+            }}
+            onMouseLeave={(e) => {
+              (e.currentTarget as HTMLElement).style.borderColor =
+                "var(--border)";
+              (e.currentTarget as HTMLElement).style.color =
+                "var(--text-secondary)";
+            }}
+          >
+            Résumé ↓
+          </a>
+          <a
+            href={siteConfig.linkedin}
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{
+              fontFamily: "var(--font-mono)",
+              fontSize: "0.72rem",
+              letterSpacing: "0.12em",
+              textTransform: "uppercase",
+              padding: "0.75rem 1.75rem",
+              border: "1px solid var(--border)",
+              color: "var(--text-secondary)",
+              textDecoration: "none",
+              borderRadius: "2px",
+              transition: "all 0.2s ease",
+            }}
+            onMouseEnter={(e) => {
+              (e.currentTarget as HTMLElement).style.borderColor =
+                "var(--text-primary)";
+              (e.currentTarget as HTMLElement).style.color =
+                "var(--text-primary)";
+            }}
+            onMouseLeave={(e) => {
+              (e.currentTarget as HTMLElement).style.borderColor =
+                "var(--border)";
+              (e.currentTarget as HTMLElement).style.color =
+                "var(--text-secondary)";
+            }}
+          >
+            LinkedIn ↗
+          </a>
+        </div>
+
+        {/* Divider + Stats */}
+        <div
+          className="hr-editorial"
+          style={{
+            opacity: 0,
+            animation: "fadeIn 0.6s ease 0.8s forwards",
+          }}
+        />
+        <div
+          style={{
+            display: "flex",
+            flexWrap: "wrap",
+            gap: "3rem",
+            paddingTop: "2rem",
+            opacity: 0,
+            animation: "fadeUp 0.6s ease 0.9s forwards",
+          }}
+        >
+          {[
+            { value: "2+", label: "Years building" },
+            { value: "5+", label: "Projects shipped" },
+            { value: "10+", label: "Technologies" },
+          ].map((stat) => (
+            <div key={stat.label}>
+              <p
+                style={{
+                  fontFamily: "var(--font-display)",
+                  fontSize: "1.8rem",
+                  fontWeight: 500,
+                  color: "var(--text-primary)",
+                  lineHeight: 1,
+                  marginBottom: "0.25rem",
+                }}
               >
-                View Projects
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
-                  <path d="M5 12h14M12 5l7 7-7 7" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
-              </a>
-              <a
-                href={siteConfig.resumeUrl}
-                download
-                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg border border-zinc-300 dark:border-zinc-700 text-zinc-700 dark:text-zinc-300 text-sm font-medium hover:bg-zinc-50 dark:hover:bg-zinc-800/60 transition-colors"
+                {stat.value}
+              </p>
+              <p
+                style={{
+                  fontFamily: "var(--font-mono)",
+                  fontSize: "0.6rem",
+                  letterSpacing: "0.12em",
+                  textTransform: "uppercase",
+                  color: "var(--text-muted)",
+                }}
               >
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
-                  <path d="M12 15V3m0 12l-4-4m4 4l4-4M2 17l.621 2.485A2 2 0 004.561 21h14.878a2 2 0 001.94-1.515L22 17" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
-                Download Resume
-              </a>
-              <a
-                href={siteConfig.linkedin}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg border border-zinc-300 dark:border-zinc-700 text-zinc-700 dark:text-zinc-300 text-sm font-medium hover:bg-zinc-50 dark:hover:bg-zinc-800/60 transition-colors"
-              >
-                <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
-                  <path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z" />
-                  <circle cx="4" cy="4" r="2" />
-                </svg>
-                LinkedIn
-              </a>
+                {stat.label}
+              </p>
             </div>
-
-            {/* Stats */}
-            <div className="flex flex-wrap gap-8 mt-14 pt-10 border-t border-zinc-100 dark:border-zinc-800">
-              {[
-                { value: "2+", label: "Years Experience" },
-                { value: "5+", label: "Projects Built" },
-                { value: "10+", label: "Technologies" },
-              ].map((stat) => (
-                <div key={stat.label}>
-                  <p className="text-2xl font-bold text-zinc-900 dark:text-zinc-100">
-                    {stat.value}
-                  </p>
-                  <p className="text-sm text-zinc-500 dark:text-zinc-500 mt-0.5">
-                    {stat.label}
-                  </p>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Right Side — Code Block */}
-          <div className="hidden md:block">
-            <div className="rounded-2xl overflow-hidden border border-zinc-200 dark:border-zinc-700/60 shadow-xl">
-              {/* Window Bar */}
-              <div className="flex items-center gap-2 px-4 py-3 bg-zinc-100 dark:bg-zinc-800 border-b border-zinc-200 dark:border-zinc-700/60">
-                <span className="w-3 h-3 rounded-full bg-red-400" />
-                <span className="w-3 h-3 rounded-full bg-yellow-400" />
-                <span className="w-3 h-3 rounded-full bg-green-400" />
-                <span className="ml-2 text-xs text-zinc-400 dark:text-zinc-500 font-mono">
-                  rahul.ts
-                </span>
-              </div>
-
-              {/* Code Content */}
-              <div className="bg-zinc-50 dark:bg-zinc-900 p-6 font-mono text-sm leading-7">
-
-                <div>
-                  <span className="text-blue-600 dark:text-blue-400">const </span>
-                  <span className="text-zinc-900 dark:text-zinc-100">rahul </span>
-                  <span className="text-zinc-500 dark:text-zinc-400">= </span>
-                  <span className="text-zinc-900 dark:text-zinc-100">{"{"}</span>
-                </div>
-
-                <div className="pl-5">
-                  <span className="text-emerald-600 dark:text-emerald-400">name</span>
-                  <span className="text-zinc-500 dark:text-zinc-400">: </span>
-                  <span className="text-amber-600 dark:text-amber-400">&quot;Rahul&quot;</span>
-                  <span className="text-zinc-500">,</span>
-                </div>
-
-                <div className="pl-5">
-                  <span className="text-emerald-600 dark:text-emerald-400">role</span>
-                  <span className="text-zinc-500 dark:text-zinc-400">: </span>
-                  <span className="text-amber-600 dark:text-amber-400">&quot;Full Stack Developer&quot;</span>
-                  <span className="text-zinc-500">,</span>
-                </div>
-
-                <div className="pl-5">
-                  <span className="text-emerald-600 dark:text-emerald-400">skills</span>
-                  <span className="text-zinc-500 dark:text-zinc-400">: </span>
-                  <span className="text-zinc-900 dark:text-zinc-100">[</span>
-                </div>
-
-                {["React", "Next.js", "Node.js", "TypeScript"].map((skill) => (
-                  <div key={skill} className="pl-10">
-                    <span className="text-amber-600 dark:text-amber-400">&quot;{skill}&quot;</span>
-                    <span className="text-zinc-500">,</span>
-                  </div>
-                ))}
-
-                <div className="pl-5">
-                  <span className="text-zinc-900 dark:text-zinc-100">]</span>
-                  <span className="text-zinc-500">,</span>
-                </div>
-
-                <div className="pl-5">
-                  <span className="text-emerald-600 dark:text-emerald-400">available</span>
-                  <span className="text-zinc-500 dark:text-zinc-400">: </span>
-                  <span className="text-blue-600 dark:text-blue-400">true</span>
-                  <span className="text-zinc-500">,</span>
-                </div>
-
-                <div className="pl-5">
-                  <span className="text-emerald-600 dark:text-emerald-400">location</span>
-                  <span className="text-zinc-500 dark:text-zinc-400">: </span>
-                  <span className="text-amber-600 dark:text-amber-400">&quot;Jaipur&quot;</span>
-                  <span className="text-zinc-500">,</span>
-                </div>
-
-                <div>
-                  <span className="text-zinc-900 dark:text-zinc-100">{"}"}</span>
-                  <span className="text-zinc-500">;</span>
-                </div>
-
-                {/* Bottom comment */}
-                <div className="mt-4 pt-4 border-t border-zinc-200 dark:border-zinc-700/60">
-                  <span className="text-zinc-400 dark:text-zinc-500 text-xs">
-                    // always open to new opportunities
-                  </span>
-                </div>
-
-              </div>
-            </div>
-          </div>
-
+          ))}
         </div>
       </div>
     </section>

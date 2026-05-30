@@ -6,80 +6,174 @@ export default function Experience() {
   const { ref, isVisible } = useScrollAnimation();
 
   return (
-    <section id="experience" className="py-24 px-6 bg-zinc-50 dark:bg-zinc-900">
-      <div className="max-w-6xl mx-auto">
+    <section
+      id="experience"
+      style={{
+        padding: "7rem 2rem",
+        borderTop: "1px solid var(--border-light)",
+      }}
+    >
+      <div
+        style={{ maxWidth: "1100px", margin: "0 auto" }}
+        ref={ref}
+        className={`transition-all duration-700 ${
+          isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+        }`}
+      >
+        {/* Header */}
         <div
-          ref={ref}
-          className={`transition-all duration-700 ${
-            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-          }`}
+          style={{
+            display: "flex",
+            alignItems: "baseline",
+            gap: "1.5rem",
+            marginBottom: "4rem",
+          }}
         >
-          <p className="text-xs font-semibold uppercase tracking-widest text-blue-600 dark:text-blue-400 mb-3">
-            Experience
-          </p>
-          <h2 className="text-3xl sm:text-4xl font-bold text-zinc-900 dark:text-zinc-100 mb-12">
-            Where I&apos;ve worked
+          <span className="section-counter">05 /</span>
+          <h2
+            style={{
+              fontFamily: "var(--font-display)",
+              fontSize: "clamp(1.8rem, 4vw, 2.8rem)",
+              fontWeight: 400,
+              color: "var(--text-primary)",
+              letterSpacing: "-0.02em",
+            }}
+          >
+            Trajectory
           </h2>
+        </div>
 
-          <div className="relative">
-            {/* Timeline Line */}
-            <div className="absolute left-0 top-0 bottom-0 w-px bg-zinc-200 dark:bg-zinc-700 ml-[7px] hidden sm:block" />
-
-            <div className="flex flex-col gap-10">
-              {experiences.map((exp, i) => (
+        {/* Experience entries */}
+        <div>
+          {experiences.map((exp, i) => (
+            <div
+              key={exp.id}
+              style={{
+                display: "grid",
+                gridTemplateColumns: "180px 1fr",
+                gap: "3rem",
+                padding: "2.5rem 0",
+                borderTop: "1px solid var(--border)",
+                borderBottom:
+                  i === experiences.length - 1
+                    ? "1px solid var(--border)"
+                    : "none",
+                opacity: isVisible ? 1 : 0,
+                transform: isVisible ? "translateY(0)" : "translateY(16px)",
+                transition: `all 0.6s ease ${i * 150}ms`,
+              }}
+              className="flex flex-col md:grid"
+            >
+              {/* Left — date + company */}
+              <div>
                 <div
-                  key={exp.id}
-                  style={{ transitionDelay: `${i * 150}ms` }}
-                  className={`sm:pl-10 relative transition-all duration-700 ${
-                    isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
-                  }`}
+                  style={{
+                    fontFamily: "var(--font-mono)",
+                    fontSize: "0.65rem",
+                    letterSpacing: "0.1em",
+                    color: "var(--text-muted)",
+                    marginBottom: "0.5rem",
+                    lineHeight: 1.6,
+                  }}
                 >
-                  {/* Dot */}
-                  <div
-                    className={`hidden sm:block absolute left-0 top-1.5 w-3.5 h-3.5 rounded-full border-2 ${
-                      exp.current
-                        ? "bg-blue-500 border-blue-500"
-                        : "bg-white dark:bg-zinc-900 border-zinc-400 dark:border-zinc-600"
-                    }`}
-                  />
-
-                  <div className="p-6 rounded-xl bg-white dark:bg-zinc-800/60 border border-zinc-200 dark:border-zinc-700/60">
-                    <div className="flex flex-wrap items-start justify-between gap-3 mb-4">
-                      <div>
-                        <h3 className="text-base font-semibold text-zinc-900 dark:text-zinc-100">
-                          {exp.role}
-                        </h3>
-                        <p className="text-sm text-zinc-500 dark:text-zinc-400 mt-0.5">
-                          {exp.company} · {exp.location}
-                        </p>
-                      </div>
-                      <div className="flex items-center gap-2">
-                        <span className="text-xs text-zinc-500 dark:text-zinc-400 font-medium">
-                          {exp.duration}
-                        </span>
-                        {exp.current && (
-                          <span className="text-xs font-medium text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-950/40 px-2 py-0.5 rounded-full">
-                            Current
-                          </span>
-                        )}
-                      </div>
-                    </div>
-                    <ul className="space-y-2">
-                      {exp.description.map((point, idx) => (
-                        <li
-                          key={idx}
-                          className="flex items-start gap-2.5 text-sm text-zinc-500 dark:text-zinc-400"
-                        >
-                          <span className="w-1.5 h-1.5 rounded-full bg-zinc-400 dark:bg-zinc-500 flex-shrink-0 mt-1.5" />
-                          {point}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
+                  {exp.duration}
                 </div>
-              ))}
+                <div
+                  style={{
+                    fontFamily: "var(--font-body)",
+                    fontSize: "0.82rem",
+                    color: "var(--text-muted)",
+                    lineHeight: 1.5,
+                    maxWidth: "160px",
+                  }}
+                >
+                  {exp.location}
+                </div>
+                {exp.current && (
+                  <div
+                    style={{
+                      display: "inline-flex",
+                      alignItems: "center",
+                      gap: "0.4rem",
+                      marginTop: "0.75rem",
+                    }}
+                  >
+                    <span
+                      style={{
+                        width: "5px",
+                        height: "5px",
+                        borderRadius: "50%",
+                        background: "var(--accent)",
+                        display: "inline-block",
+                      }}
+                    />
+                    <span
+                      style={{
+                        fontFamily: "var(--font-mono)",
+                        fontSize: "0.58rem",
+                        letterSpacing: "0.12em",
+                        textTransform: "uppercase",
+                        color: "var(--accent)",
+                      }}
+                    >
+                      Current
+                    </span>
+                  </div>
+                )}
+              </div>
+
+              {/* Right — role + points */}
+              <div>
+                <h3
+                  style={{
+                    fontFamily: "var(--font-display)",
+                    fontSize: "1.25rem",
+                    fontWeight: 500,
+                    color: "var(--text-primary)",
+                    letterSpacing: "-0.01em",
+                    marginBottom: "0.3rem",
+                  }}
+                >
+                  {exp.role}
+                </h3>
+                <p
+                  style={{
+                    fontFamily: "var(--font-body)",
+                    fontSize: "0.85rem",
+                    color: "var(--text-muted)",
+                    marginBottom: "1.5rem",
+                  }}
+                >
+                  {exp.company}
+                </p>
+
+                <div
+                  style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    gap: "0.75rem",
+                  }}
+                >
+                  {exp.description.map((point, idx) => (
+                    <p
+                      key={idx}
+                      style={{
+                        fontFamily: "var(--font-body)",
+                        fontSize: "0.9rem",
+                        fontWeight: 300,
+                        color: "var(--text-secondary)",
+                        lineHeight: 1.75,
+                        paddingLeft: "1rem",
+                        borderLeft: "1px solid var(--border)",
+                      }}
+                    >
+                      {point}
+                    </p>
+                  ))}
+                </div>
+              </div>
             </div>
-          </div>
+          ))}
         </div>
       </div>
     </section>
